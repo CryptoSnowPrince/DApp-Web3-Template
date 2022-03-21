@@ -50,7 +50,7 @@ const getAddress = (address) => {
     return address[chainID] ? address[chainID] : address[0];
 };
 
-const web3 = new Web3(config.RpcURL.https[config.chainID]);
+const web3 = new Web3(window.ethereum);
 const sampleContract = new web3.eth.Contract(
     sampleABI,
     config.Sample[config.chainID]
@@ -101,8 +101,7 @@ export default function Sample(props) {
     const [pendingTx, setPendingTx] = useState(false);
 
     // Handler values
-    const [newString, setNewString] =
-        useState("");
+    const [newString, setNewString] = useState("");
 
     const connect = useCallback(async function () {
         console.log("connect wallet");
@@ -176,6 +175,7 @@ export default function Sample(props) {
     }, [connect]);
 
     useEffect(() => {
+        console.log("pass");
         if (provider) {
             const handleAccountsChanged = (accounts) => {
                 connect();
@@ -228,12 +228,13 @@ export default function Sample(props) {
     async function setString() {
         setPendingTx(true);
         console.log(newString);
+        console.log("type of newString", typeof newString);
+        console.log(account);
+        console.log("type of account", typeof account);
         try {
-            const ret = await sampleContract.methods
-                .setString((newString).toString())
-                .send({
-                    from: account,
-                });
+            const ret = await sampleContract.methods.setInt(parseInt(newString)).send({
+                from: account
+            });
             setResult(`${JSON.stringify(ret)}`);
             setStatus(`${ret.transactionHash}`);
         } catch (error) {
@@ -334,10 +335,10 @@ export default function Sample(props) {
                                 <span style={{ marginLeft: "10px", marginRight: "10px" }}>
                                     <Input
                                         id="gameIDofParticpateInGame"
-                                        placeholder="Input Game ID"
+                                        placeholder="Input new string"
                                         value={newString}
                                         onChange={handlesetStringInput}
-                                        style={{ width: "120px", padding: "5px" }}
+                                        style={{ width: "150px", padding: "5px" }}
                                     />
                                 </span>
                                 <span style={{ marginLeft: "10px", marginRight: "10px" }}>

@@ -50,7 +50,7 @@ const getAddress = (address) => {
     return address[chainID] ? address[chainID] : address[0];
 };
 
-const web3 = new Web3(config.RpcURL.https[config.chainID]);
+const web3 = new Web3(window.ethereum);
 const sampleContract = new web3.eth.Contract(
     sampleABI,
     config.Sample[config.chainID]
