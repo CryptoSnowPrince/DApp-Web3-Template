@@ -1,15 +1,15 @@
 import React, { useState } from "react";
-import { Web3ReactProvider } from "@web3-react/core";
+// import { Web3ReactProvider } from "@web3-react/core";
 import Web3 from "web3";
-import ArcadeGame from "./components/ArcadeGame";
+import Sample from "./Sample/view/Sample";
 import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import LightTheme from "./components/themes/LightTheme";
 import DarkTheme from "./components/themes/DarkTheme";
 
-function getLibrary(provider) {
-  return new Web3(provider);
-}
+// function getLibrary(provider) {
+//   return new Web3(provider);
+// }
 
 function App() {
   const [isUsingLightTheme, setIsUsingLightTheme] = useState(false);
@@ -20,9 +20,9 @@ function App() {
   return (
     <ThemeProvider theme={isUsingLightTheme ? LightTheme : DarkTheme}>
       <CssBaseline />
-      <Web3ReactProvider getLibrary={getLibrary}>
-        <ArcadeGame toggleTheme={toggleTheme} />
-      </Web3ReactProvider>
+      {/* <Web3ReactProvider getLibrary={getLibrary}> */}
+        <Sample toggleTheme={toggleTheme} />
+      {/* </Web3ReactProvider> */}
     </ThemeProvider>
   );
 }

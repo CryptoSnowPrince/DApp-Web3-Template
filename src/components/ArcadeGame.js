@@ -1,5 +1,4 @@
 import { useWeb3React } from "@web3-react/core";
-import { injected } from "./wallet/Connectors";
 import {
   AppBar,
   Toolbar,
@@ -15,7 +14,6 @@ import LightModeIcon from "@mui/icons-material/LightMode";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import arcadeGameABI from "../contracts/abi/ArcadeGame.json";
 import config from "../contracts/config";
-import privateInfo from "../contracts/private";
 import { useEffect, useState } from "react";
 import "./ArcadeGame.css";
 
@@ -84,29 +82,30 @@ export default function ArcadeGame(props) {
     showAccount.substring(showAccount.length - 4, showAccount.length);
 
   useEffect(() => {
-    if (privateInfo.chainID !== chainId && active)
+    if (config.chainID !== chainId && active)
       alert("Change network to BSC mainnet!");
   }, [chainId, active]);
 
   const getAddress = (address) => {
-    const chainID = privateInfo.chainID;
+    const chainID = config.chainID;
     return address[chainID] ? address[chainID] : address[0];
   };
 
   async function connect() {
-    try {
-      await activate(injected);
-    } catch (err) {
-      console.error(err);
-    }
+    console.log("connect");
+    // try {
+    //   await activate(injected);
+    // } catch (err) {
+    //   console.error(err);
+    // }
   }
 
   async function disconnect() {
-    try {
-      deactivate();
-    } catch (err) {
-      console.error(err);
-    }
+    // try {
+    //   deactivate();
+    // } catch (err) {
+    //   console.error(err);
+    // }
   }
 
   // Handlers
