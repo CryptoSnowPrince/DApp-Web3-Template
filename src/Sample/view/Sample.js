@@ -242,7 +242,7 @@ export default function Sample(props) {
             }
           };
         }
-      }, [provider]);
+      }, [connect, provider]);
 
     // Handlers
     function handleGameLevelOfGetPricePerGameInput(evt) {
@@ -720,7 +720,7 @@ export default function Sample(props) {
                         {/* Title */}
                         <div style={{ margin: "20px" }}>
                             <Typography textAlign="center" variant="h3">
-                                Gaming Arcade Contract Testing Page
+                                Web3 Sample Page
                             </Typography>
                             <Typography textAlign="center" variant="h5">
                                 Contract Address on BSC Testnet is
