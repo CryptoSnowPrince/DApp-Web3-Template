@@ -30,9 +30,9 @@ const config = {
         97: "0x61",
         159: "0x9F",
     },
-    INFURA_ID: process.env.INFURA_ID,
+    INFURA_ID: process.env.REACT_APP_INFURA_ID,
     chainID: 159,
-    privateKey: process.env.PRIVATE_KEY,
+    privateKey: process.env.REACT_APP_PRIVATE_KEY,
 };
 
 export default config;
